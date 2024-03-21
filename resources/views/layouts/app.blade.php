@@ -71,19 +71,19 @@
                                         <i class="fi-air-play"></i><span> Email Offer </span>
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="javascript: void(0);"><i class="fi-bar-graph-2"></i><span> Category </span> <span class="menu-arrow"></span></a>
+                                    <ul class="nav-second-level" aria-expanded="false">
+                                        <li><a href="{{route('category.create')}}">Add Category</a></li>
+                                        <li><a href="{{route('category.index')}}">List Category</a></li>
+                                    </ul>
+                                </li>
                             @endif
 
                             <li>
                                 <a href="widgets.html">
                                     <i class="fi-command"></i> <span> Widgets </span>
                                 </a>
-                            </li>
-
-                            <li>
-                                <a href="javascript: void(0);"><i class="fi-bar-graph-2"></i><span> Charts </span> <span class="menu-arrow"></span></a>
-                                <ul class="nav-second-level" aria-expanded="false">
-                                    <li><a href="chart-flot.html">Flot Chart</a></li>
-                                </ul>
                             </li>
 
                         </ul>
