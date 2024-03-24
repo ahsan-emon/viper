@@ -17,7 +17,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-
+        return view('category.index',[
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -62,15 +64,17 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $category = Category::find($id);
+        return view('category.show', compact('category'));
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
-        //
+    {   $category = Category::find($id);
+        return view('category.edit',compact('category'));
     }
 
     /**
@@ -78,7 +82,21 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        if($request->hasFile('category_photo')){
+            unlink(base_path('public/uploads/category_photos/'.Category::find($id)->category_photo));
+            $manager = new ImageManager(new Driver());
+            $category_photo = Auth::id().'-'.time().'-'.Str::random(5).'.'.$request->file('category_photo')->getClientOriginalExtension();
+            //resize(600,328)-> //resize after read if need to resize image
+            $manager->read($request->file('category_photo'))->resize(600,350)->save(base_path('public/uploads/category_photos/'.$category_photo));
+            Category::find($id)->update([
+                'category_photo' => $category_photo
+            ]);
+        }
+        Category::find($id)->update([
+            'category_name' => $request->category_name,
+            'category_tagline' => $request->category_tagline,
+        ]);
+        return back()->with('success','Category updated successfully!');
     }
 
     /**
@@ -86,6 +104,9 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::find($id);
+        unlink(base_path('public/uploads/category_photos/'.$category->category_photo));
+        $category->delete();
+        return back()->with('delete','Deleted successfully');
     }
 }

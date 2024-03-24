@@ -31,7 +31,8 @@
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/vendor/vendor.min.css" />
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/plugins/plugins.min.css" />
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/style.min.css">
-
+    {{-- show more css  --}}
+    <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/showMoreItems-theme.min.css" />
     <!-- Main Style -->
     <!-- <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/style.css" /> -->
 
@@ -2132,19 +2133,26 @@
     <!-- Banner Area Start -->
     <div class="banner-area pt-100px pb-100px plr-15px">
         <div class="row m-0">
-            @foreach ($categories as $category)
-                <div class="col-12 col-lg-4 mb-md-30px mb-lm-30px">
-                    <div class="single-banner-2">
-                        <img src="{{asset('uploads/category_photos')}}/{{$category->category_photo}}" alt="">
-                        <div class="item-disc">
-                            <h4 class="title">{{$category->category_tagline}} <br>
-                                {{$category->category_name}}</h4>
-                            <a href="shop-left-sidebar.html" class="shop-link btn btn-primary ">Shop Now <i
-                                    class="fa fa-shopping-basket ml-5px" aria-hidden="true"></i></a>
+            <div class="col-12">
+                <div class="section-title mb-0">
+                    <h2 class="title">#Categories</h2>
+                </div>
+            </div>
+            <div class="example">
+                @foreach ($categories as $category)
+                    <div class="col-12 col-lg-4 mb-md-30px mb-lm-30px item">
+                        <div class="single-banner-2">
+                            <img src="{{asset('uploads/category_photos')}}/{{$category->category_photo}}" alt="">
+                            <div class="item-disc">
+                                <h4 class="title">{{$category->category_tagline}} <br>
+                                    {{$category->category_name}}</h4>
+                                <a href="shop-left-sidebar.html" class="shop-link btn btn-primary ">Shop Now <i
+                                        class="fa fa-shopping-basket ml-5px" aria-hidden="true"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                 @endforeach
+            </div>
         </div>
     </div>
     <!-- Banner Area End -->
@@ -3661,6 +3669,32 @@
 
     <!-- Main Js -->
     <script src="{{asset('frontend')}}/assets/js/main.js"></script>
+
+    {{-- show more js  --}}
+    <script src="{{asset('frontend')}}/assets/js/showMoreItems.min.js"></script>
+   <script>
+     $('.example').showMoreItems({
+        responsive: [
+          {
+            breakpoint: 1280,
+            settings: {
+              startNum: 3,
+              afterNum: 3
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              startNum: 1,
+              afterNum: 1
+            }
+          }
+        ]
+      });
+      $('.example').showMoreItems({
+        startNum: 3
+        });
+   </script>
 </body>
 
 

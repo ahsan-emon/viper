@@ -61,7 +61,7 @@ class ProfileController extends Controller
     public function photochange(Request $request)
     {
         $request->validate([
-            'photo' => 'required | image | file'
+            'photo' => 'required | image | mimes:jpg,png'
         ],[
             'photo.required' => 'Photo must be required!'
         ]);
