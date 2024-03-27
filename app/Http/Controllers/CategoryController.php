@@ -36,7 +36,9 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            '*' => 'required'
+            'category_name' => 'required | unique:categories,category_name',
+            'category_tagline' => 'required',
+            'category_photo' => 'required | Image | mimes:jpg,png',
         ],[
             'category_name.required' => 'Category Name must be required',
             'category_tagline.required' => 'Category Tagline must be required',
@@ -82,6 +84,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'category_name' => 'required',
+            'category_tagline' => 'required',
+            'category_photo' => 'Image | mimes:jpg,png',
+        ]);
         if($request->hasFile('category_photo')){
             unlink(base_path('public/uploads/category_photos/'.Category::find($id)->category_photo));
             $manager = new ImageManager(new Driver());
@@ -95,6 +102,7 @@ class CategoryController extends Controller
         Category::find($id)->update([
             'category_name' => $request->category_name,
             'category_tagline' => $request->category_tagline,
+            'status' => $request->status,
         ]);
         return back()->with('success','Category updated successfully!');
     }

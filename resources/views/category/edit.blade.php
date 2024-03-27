@@ -29,6 +29,13 @@
                             @csrf
                             @method('PUT')
                             <div class="form-group">
+                                <label for="status" class="form-label">Category Name</label>
+                                <select name="status" id="status" class="form-control">
+                                    <option value="show" {{ ($category->status == 'show') ? 'selected' : '' }}>Show</option>
+                                    <option value="hide"  {{ ($category->status == 'hide') ? 'selected' : '' }}>Hide</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="category" class="form-label">Category Name</label>
                                 <input type="text" name="category_name" value="{{ $category->category_name }}" class="form-control" id="category" placeholder="Enter Category Name">
                                 @error('category_name')

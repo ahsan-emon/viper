@@ -34,6 +34,8 @@
                                 <tr>
                                     <th>Category Name</th>
                                     <th>Category Photo</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -41,6 +43,7 @@
                                         <tr>
                                             <td>{{ $category->category_name }}</td>
                                             <td><img width="50px" src="{{ asset('uploads/category_photos') }}/{{ $category->category_photo }}" alt="Category Photo"></td>
+                                            <td>{{ $category->status }}</td>
                                             <td>
                                                 <a href="{{ route('category.show',$category->id) }}" class="btn btn-sm btn-secondary">
                                                     Show

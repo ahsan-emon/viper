@@ -47,7 +47,7 @@
                                     <p class="text-danger">{{$message}}</p>
                                 @enderror
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Add Category</button>
                         </form>
                     </div>
                 @else

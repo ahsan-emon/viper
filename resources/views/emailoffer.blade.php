@@ -28,6 +28,7 @@
                                 <td>SL. No</td>
                                 <td>Customer Name</td>
                                 <td>Customer Email</td>
+                                <td>Created At</td>
                                 <td>Action</td>
                             </tr>
                             <form action="{{route('checkemailoffer')}}" method="POST">
@@ -40,6 +41,15 @@
                                         <td>{{$loop->index+1 }}</td>
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
+                                        <td>
+                                            @if ($user->created_at->diffInDays() > 30)
+                                                {{$user->created_at}}
+                                            @else
+                                                <div class="badge badge-primary">
+                                                    {{$user->created_at->diffForHumans()}}
+                                                </div>
+                                            @endif
+                                        </td>
                                         <td>
                                             <a href="{{route('singleemailoffer',$user->id)}}" class="btn btn-sm btn-success">Send</a>
                                         </td>

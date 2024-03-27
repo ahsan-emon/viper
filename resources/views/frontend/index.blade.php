@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/plugins/plugins.min.css" />
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/style.min.css">
     {{-- show more css  --}}
-    <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/showMoreItems-theme.min.css" />
+    {{-- <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/showMoreItems-theme.min.css" /> --}}
     <!-- Main Style -->
     <!-- <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/style.css" /> -->
 
@@ -2138,8 +2138,7 @@
                     <h2 class="title">#Categories</h2>
                 </div>
             </div>
-            <div class="example">
-                @foreach ($categories as $category)
+            @foreach ($categories as $category)
                     <div class="col-12 col-lg-4 mb-md-30px mb-lm-30px item">
                         <div class="single-banner-2">
                             <img src="{{asset('uploads/category_photos')}}/{{$category->category_photo}}" alt="">
@@ -2152,7 +2151,6 @@
                         </div>
                     </div>
                  @endforeach
-            </div>
         </div>
     </div>
     <!-- Banner Area End -->
@@ -3671,7 +3669,7 @@
     <script src="{{asset('frontend')}}/assets/js/main.js"></script>
 
     {{-- show more js  --}}
-    <script src="{{asset('frontend')}}/assets/js/showMoreItems.min.js"></script>
+    {{-- <script src="{{asset('frontend')}}/assets/js/showMoreItems.min.js"></script>
    <script>
      $('.example').showMoreItems({
         responsive: [
@@ -3694,7 +3692,7 @@
       $('.example').showMoreItems({
         startNum: 3
         });
-   </script>
+   </script> --}}
 </body>
 
 

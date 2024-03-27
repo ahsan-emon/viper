@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{FrontendController, HomeController, ProfileController, CategoryController};
+use App\Http\Controllers\{FrontendController, HomeController, ProfileController, CategoryController, SubCategoryController};
 
 
 Auth::routes();
@@ -18,3 +18,4 @@ Route::post('/profile/password/change', [ProfileController::class, 'passwordchan
 Route::post('/profile/photo/change', [ProfileController::class, 'photochange'])->name('profile.photochange');
 
 Route::resource('category', CategoryController::class);
+Route::resource('subCategory', SubCategoryController::class);

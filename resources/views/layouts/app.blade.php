@@ -76,6 +76,7 @@
                                     <ul class="nav-second-level" aria-expanded="false">
                                         <li><a href="{{route('category.create')}}">Add Category</a></li>
                                         <li><a href="{{route('category.index')}}">List Category</a></li>
+                                        <li><a href="{{route('subCategory.index')}}">Sub Category</a></li>
                                     </ul>
                                 </li>
                             @endif
