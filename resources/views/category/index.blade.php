@@ -39,7 +39,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($categories as $category)
+                                    @forelse ($categories as $category)
                                         <tr>
                                             <td>{{ $category->category_name }}</td>
                                             <td><img width="50px" src="{{ asset('uploads/category_photos') }}/{{ $category->category_photo }}" alt="Category Photo"></td>
@@ -60,7 +60,11 @@
                                                 </form>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr class="text-center text-danger">
+                                            <td colspan="50">No Data To Show</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                         </table>
                     </div>

@@ -23,6 +23,11 @@
                             {{session('success')}}
                         </div>
                     @endif
+                    @if (session('exist'))
+                        <div class="alert alert-danger">
+                            {{session('exist')}}
+                        </div>
+                    @endif
                     <div class="card-body">
                         <form action="{{route('subCategory.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
@@ -86,7 +91,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($subcategories as $key => $subcategory)
+                                    @forelse ($subcategories as $key => $subcategory)
                                         <tr>
                                             {{-- @php
                                                 use App/Models/Category;
@@ -112,7 +117,11 @@
                                                 </form>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr class="text-center text-danger">
+                                            <td colspan="50">No Data To Show</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                         </table>
                         {{ $subcategories->links() }}

@@ -40,17 +40,22 @@ class SubCategoryController extends Controller
             '*' => 'required',
             'subcategory_photo' => 'required | image'
         ]);
-        $manager = new ImageManager(new Driver());
-        $subcategory_img = Auth::id().'-'.time().'-'.Str::random(5).'.'.$request->file('subcategory_photo')->getClientOriginalExtension();
-        $manager->read($request->file('subcategory_photo'))->resize(600, 350)->save(base_path('public/uploads/subcategory_photos/'.$subcategory_img));
-        Subcategory::insert([
-            'category_id' => $request->category_id,
-            'subcategory_name' => $request->subcategory_name,
-            'subcategory_tagline' => $request->subcategory_tagline,
-            'subcategory_photo' => $subcategory_img,
-            'created_at' => Carbon::now()
-        ]);
-        return back()->with('success','Subcategory added successfully!');
+        echo Subcategory::where('category_id',$request->category_id)->where('subcategory_name',$request->subcategory_name)->exists();
+        if(Subcategory::where('category_id',$request->category_id)->where('subcategory_name',$request->subcategory_name)->exists()){
+            return back()->with('exist','Subcategory already exist!');
+        }else{
+            $manager = new ImageManager(new Driver());
+            $subcategory_img = Auth::id().'-'.time().'-'.Str::random(5).'.'.$request->file('subcategory_photo')->getClientOriginalExtension();
+            $manager->read($request->file('subcategory_photo'))->resize(600, 350)->save(base_path('public/uploads/subcategory_photos/'.$subcategory_img));
+            Subcategory::insert([
+                'category_id' => $request->category_id,
+                'subcategory_name' => $request->subcategory_name,
+                'subcategory_tagline' => $request->subcategory_tagline,
+                'subcategory_photo' => $subcategory_img,
+                'created_at' => Carbon::now()
+            ]);
+            return back()->with('success','Subcategory added successfully!');
+        }
     }
 
     /**
